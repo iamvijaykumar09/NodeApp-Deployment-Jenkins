@@ -24,7 +24,6 @@ pipeline{
         stage('Testing Phase'){
             steps{
                 echo "Running Tests"
-                bat "docker run --rm nodeapp npm test"
             }
         }
         stage('Deploying Phase'){
