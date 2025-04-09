@@ -8,31 +8,31 @@ pipeline{
                 git url: "https://github.com/iamvijaykumar09/NodeApp-Deployment-Jenkins.git",
                 branch: 'main'
             }
-        },
+        }
         stage('Installing Dependencies Phase'){
             steps{
                 echo "Dependencies are being installed"
                 bat "npm install --force"
             }
-        },
+        }
         stage('Building Phase'){
             steps{
                 echo "Building the application using Docker"
                 bat "docker build -t nodeapp ."
             }
-        },
+        }
         stage('Testing Phase'){
             steps{
                 echo "Running Tests"
                 bat "docker run --rm nodeapp npm test"
             }
-        },
+        }
         stage('Deploying Phase'){
             steps{
                 echo "Application is being deployed at localhost:7000"
                 bat "docker run -d -p 7000:7000 --name nodeapp-container nodeapp"
             }
-        },
+        }
         stage('Notification Phase'){
             steps{
                 echo "Successfully Deployed the application"
