@@ -35,7 +35,7 @@ pipeline{
         stage('Stopping and Cleaning Up Container'){
             steps{
                 echo "Waiting for 2 minutes before stopping the container"
-                bat "timeout /t 120 > nul" // Wait for 2 minutes silently
+                bat "timeout /t 120 > nul"
                 echo "Stopping and removing the container"
                 bat "docker stop nodeapp-container"
                 bat "docker rm nodeapp-container"
