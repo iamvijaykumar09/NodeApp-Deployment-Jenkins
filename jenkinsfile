@@ -30,10 +30,15 @@ pipeline{
             steps{
                 echo "Application is being deployed at localhost:7000"
                 bat "docker run -d -p 7000:7000 --name nodeapp-container nodeapp"
-                bat "timeout /T 60"
+            }
+        }
+        stage('Stopping and Cleaning Up Container'){
+            steps{
+                echo "Waiting for 2 minutes before stopping the container"
+                bat "timeout /t 120" // Wait for 2 minutes
+                echo "Stopping and removing the container"
                 bat "docker stop nodeapp-container"
                 bat "docker rm nodeapp-container"
-                echo "Application is being stopped and removed from deployment"
             }
         }
         stage('Notification Phase'){
