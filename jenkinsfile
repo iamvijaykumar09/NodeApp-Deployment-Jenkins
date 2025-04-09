@@ -30,8 +30,8 @@ pipeline{
             steps{
                 echo "Application is being deployed at localhost:7000"
                 bat "docker run -d -p 7000:7000 --name nodeapp-container nodeapp"
-                bat """timeout /T 60 /NOBREAK
-                    docker stop nodeapp-container \n
+                bat """timeout /T 60 /NOBREAK &&
+                    docker stop nodeapp-container &&
                     docker rm nodeapp-container"""
                 echo "Application is being stopped and removed from deployment"
             }
